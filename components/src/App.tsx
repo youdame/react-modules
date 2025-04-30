@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import Modal from './lib/Modal';
+import { Modal } from 'seo-meta-react-modal';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
