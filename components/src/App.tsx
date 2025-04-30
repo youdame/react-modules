@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import './App.css';
 import Modal from './lib/Modal';
+
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +16,7 @@ function App() {
       {isOpen && (
         <Modal>
           <Modal.BackDrop onClose={handleButtonToggle} />
-          <Modal.Content position="center" className="test">
+          <Modal.Content position="center" style={{ width: '300px', height: '300px', backgroundColor: 'white' }}>
             <Modal.Title>하이</Modal.Title>
             <Modal.CloseButton style={{ position: 'absolute', right: '24px', top: '24px' }} onClick={handleButtonToggle}>
               <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">

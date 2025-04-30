@@ -31,8 +31,8 @@ function ModalContent({
   );
 }
 
-function ModalTitle({ children }: { children: ReactNode }) {
-  return <S.ModalTitle>{children}</S.ModalTitle>;
+function ModalTitle({ children, ...props }: { children: ReactNode } & ComponentProps<'h2'>) {
+  return <h2 {...props}>{children}</h2>;
 }
 
 function ModalCloseButton({ onClick, children, ...props }: { onClick: () => void; children: ReactNode } & ComponentProps<'button'>) {
@@ -43,8 +43,12 @@ function ModalCloseButton({ onClick, children, ...props }: { onClick: () => void
   );
 }
 
-function ModalButton({ onClick, children }: { onClick: () => void; children: ReactNode }) {
-  return <button onClick={onClick}>{children}</button>;
+function ModalButton({ onClick, children, ...props }: { onClick: () => void; children: ReactNode } & ComponentProps<'button'>) {
+  return (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  );
 }
 
 const Modal = Object.assign(ModalMain, {
