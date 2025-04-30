@@ -1,5 +1,14 @@
 import styled from '@emotion/styled';
 
+export const BackDrop = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+`;
+
 export const ModalWrapper = styled.div<{ position: string }>`
   position: fixed;
   left: 50%;
