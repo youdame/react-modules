@@ -16,3 +16,9 @@ export const ModalWrapper = styled.div<{ position: string }>`
   bottom: ${(props) => props.position === 'bottom' && '0'};
   transform: ${(props) => (props.position === 'center' ? 'translate(-50%, -50%)' : 'translate(-50%, 0)')};
 `;
+
+export const ModalTitle = styled.h2`
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+`;

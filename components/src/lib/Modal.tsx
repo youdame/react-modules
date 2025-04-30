@@ -31,9 +31,28 @@ function ModalContent({
   );
 }
 
+function ModalTitle({ children }: { children: ReactNode }) {
+  return <S.ModalTitle>{children}</S.ModalTitle>;
+}
+
+function ModalCloseButton({ onClick, children, ...props }: { onClick: () => void; children: ReactNode } & ComponentProps<'button'>) {
+  return (
+    <button onClick={onClick} {...props}>
+      {children}
+    </button>
+  );
+}
+
+function ModalButton({ onClick, children }: { onClick: () => void; children: ReactNode }) {
+  return <button onClick={onClick}>{children}</button>;
+}
+
 const Modal = Object.assign(ModalMain, {
   BackDrop: ModalBackDrop,
-  Content: ModalContent
+  Content: ModalContent,
+  Title: ModalTitle,
+  CloseButton: ModalCloseButton,
+  Button: ModalButton
 });
 
 export default Modal;
