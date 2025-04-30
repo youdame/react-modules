@@ -1,9 +1,10 @@
 import { MouseEvent, ReactNode, useRef } from 'react';
 import * as S from './Modal.styles';
 import { ComponentProps } from 'react';
+import ModalPortal from './ModalPortal';
 
 function ModalMain({ children }: { children: ReactNode }) {
-  return <div>{children}</div>;
+  return <ModalPortal>{children}</ModalPortal>;
 }
 
 function ModalBackDrop({ onClose, ...props }: { onClose: () => void }) {
