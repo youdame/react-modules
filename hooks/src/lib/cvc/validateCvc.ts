@@ -1,16 +1,16 @@
 import validation from '../validation';
 
-const validateCvc = (expiration: string) => {
+const validateCvc = (cvc: string) => {
   const errorObject = {
     errorState: false,
     errorMessage: ''
   };
 
-  if (!validation.isNumber(expiration) && expiration !== '') {
+  if (!validation.isNumber(cvc) && cvc !== '') {
     return { errorState: true, errorMessage: '숫자만 입력하세요.' };
   }
 
-  if (!validation.isValidLength(expiration, 3) && expiration !== '') {
+  if (!validation.isValidLength(cvc, 3) && cvc !== '') {
     return { errorState: true, errorMessage: '3자리 숫자를 입력하세요.' };
   }
 
