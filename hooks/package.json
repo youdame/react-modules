@@ -1,5 +1,5 @@
 {
-  "name": "hooks",
+  "name": "meta-seo-hooks",
   "version": "0.0.1",
   "description": "npm modules",
   "type": "module",
@@ -17,6 +17,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "meta-seo-hooks": "^0.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

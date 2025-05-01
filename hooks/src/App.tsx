@@ -1,8 +1,7 @@
+import { useCvc } from 'meta-seo-hooks';
 import './App.css';
 import useCardNumber from './lib/cardNumber/useCardNumber';
 import { useEffect } from 'react';
-import useExpiration from './lib/expiration/useExpiration';
-import useCvc from './lib/cvc/useCvc';
 
 function App() {
   // const { cardNumber, errorState, handleCardNumberChange } = useCardNumber();
