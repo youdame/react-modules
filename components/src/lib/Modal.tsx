@@ -7,7 +7,7 @@ function ModalMain({ children }: { children: ReactNode }) {
   return <ModalPortal>{children}</ModalPortal>;
 }
 
-function ModalBackDrop({ onClose, ...props }: { onClose: () => void }) {
+function ModalBackDrop({ onClose, ...props }: { onClose: () => void } & ComponentProps<'div'>) {
   const outsideRef = useRef<HTMLDivElement>(null);
   const handleBackClick = (e: MouseEvent<HTMLDivElement>) => {
     if (outsideRef.current === e.target) {
