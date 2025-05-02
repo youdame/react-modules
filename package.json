@@ -1,7 +1,0 @@
-{
-  "name": "@seo-meta/eact-modal",
-  "dependencies": {
-    "@storybook/client-api": "^7.6.17"
-  }
-}
-
