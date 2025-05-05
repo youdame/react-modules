@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import validateExpiration from './validateExpiration';
 
 export type ExpirationStateType = typeof initialExpirationState;

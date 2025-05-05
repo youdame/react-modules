@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import validateCardNumber from './validateCardNumber';
 
 export type CarNumberStateType = typeof initialCardNumberState;
