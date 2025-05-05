@@ -1,45 +1,53 @@
 import validation from '../validation';
-import { ExpirationStateKey, ExpirationStateType } from './useExpiration';
+import { ExpirationStateType } from './useExpiration';
 
 const validateExpiration = (expiration: ExpirationStateType) => {
-  const errorState = {
-    year: false,
-    month: false
-  };
+  const { errorState, errorMessage } = Object.entries(expiration).reduce(
+    (acc, [key, value]) => {
+      if (value === '') return acc;
 
-  let errorMessage = '';
+      if (!validation.isNumber(value)) {
+        return {
+          errorState: { ...acc.errorState, [key]: true },
+          errorMessage: '숫자만 입력하세요.'
+        };
+      }
 
-  for (const [k, value] of Object.entries(expiration)) {
-    const key = k as ExpirationStateKey;
-    if (!validation.isNumber(value) && value !== '') {
-      errorState[key] = true;
-      errorMessage = '숫자만 입력하세요.';
-      break;
-    }
+      if (!validation.isValidLength(value, 2)) {
+        return {
+          errorState: { ...acc.errorState, [key]: true },
+          errorMessage: '2자리 숫자를 입력하세요.'
+        };
+      }
 
-    if (!validation.isValidLength(value, 2) && value !== '') {
-      errorState[key] = true;
-      errorMessage = '2자리 숫자를 입력하세요.';
-      break;
-    }
+      if (key === 'month' && !validation.isValidMonth(value)) {
+        return {
+          errorState: { ...acc.errorState, month: true },
+          errorMessage: '유효한 월을 입력하세요.'
+        };
+      }
 
-    if (!validation.isValidMonth(value) && key === 'month' && value !== '') {
-      errorState[key] = true;
-      errorMessage = '유효한 월을 입력하세요.';
-      break;
-    }
+      if (key === 'year' && !validation.isValidYear(value)) {
+        return {
+          errorState: { ...acc.errorState, year: true },
+          errorMessage: '유효한 연도를 입력하세요.'
+        };
+      }
 
-    if (!validation.isValidYear(value) && key === 'year' && value !== '') {
-      errorState[key] = true;
-      errorMessage = '유효한 연도를 입력하세요.';
-      break;
-    }
+      return acc;
+    },
+    { errorState: { year: false, month: false }, errorMessage: '' }
+  );
 
-    if (!validation.isValidateDate(expiration.month, expiration.year) && expiration.month !== '' && expiration.year !== '') {
-      errorState[key] = true;
-      errorMessage = '지나지 않은 날짜를 입력해주세요.';
-      break;
-    }
+  if (
+    expiration.month !== '' &&
+    expiration.year !== '' &&
+    !validation.isValidateDate(expiration.month, expiration.year)
+  ) {
+    return {
+      errorState: { ...errorState, year: true },
+      errorMessage: '지나지 않은 날짜를 입력해주세요.'
+    };
   }
 
   return { errorState, errorMessage };

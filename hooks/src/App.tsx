@@ -21,10 +21,26 @@ function App() {
   return (
     <div style={{ padding: '1rem', maxWidth: '400px' }}>
       <h2>카드 번호</h2>
-      <input value={cardNumber.first} onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'first')} placeholder="첫 번째 4자리" />
-      <input value={cardNumber.second} onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'second')} placeholder="두 번째 4자리" />
-      <input value={cardNumber.third} onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'third')} placeholder="세 번째 4자리" />
-      <input value={cardNumber.fourth} onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'fourth')} placeholder="네 번째 4자리" />
+      <input
+        value={cardNumber.first}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'first')}
+        placeholder="첫 번째 4자리"
+      />
+      <input
+        value={cardNumber.second}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'second')}
+        placeholder="두 번째 4자리"
+      />
+      <input
+        value={cardNumber.third}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'third')}
+        placeholder="세 번째 4자리"
+      />
+      <input
+        value={cardNumber.fourth}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleCardNumberChange(e, 'fourth')}
+        placeholder="네 번째 4자리"
+      />
       <p style={{ color: 'red' }}>{cardError.errorMessage}</p>
 
       <h2>유효기간</h2>

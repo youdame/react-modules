@@ -6,11 +6,13 @@ const validateCvc = (cvc: string) => {
     errorMessage: ''
   };
 
-  if (!validation.isNumber(cvc) && cvc !== '') {
+  if (cvc === '') return errorObject;
+
+  if (!validation.isNumber(cvc)) {
     return { errorState: true, errorMessage: '숫자만 입력하세요.' };
   }
 
-  if (!validation.isValidLength(cvc, 3) && cvc !== '') {
+  if (!validation.isValidLength(cvc, 3)) {
     return { errorState: true, errorMessage: '3자리 숫자를 입력하세요.' };
   }
 
