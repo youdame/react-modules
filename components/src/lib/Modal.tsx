@@ -1,10 +1,11 @@
 import { MouseEvent, ReactNode, useRef } from 'react';
-import * as S from './Modal.styles';
+
 import { ComponentProps } from 'react';
 import ModalPortal from './ModalPortal';
 import useEscClick from '../lib/hooks/useEscKey';
 import useScrollBlock from '../lib/hooks/useScrollBlock';
 import { ModalContext, useModalContext } from './ModalContext';
+import { BackDrop, ModalWrapper } from './Modal.styles';
 
 function ModalMain({ onClose, children }: { onClose: () => void; children: ReactNode } & ComponentProps<'div'>) {
   useEscClick(onClose);
@@ -27,7 +28,7 @@ function ModalBackDrop({ ...props }: ComponentProps<'div'>) {
       onClose();
     }
   };
-  return <S.BackDrop {...props} ref={outsideRef} onClick={handleBackClick} />;
+  return <BackDrop {...props} ref={outsideRef} onClick={handleBackClick} />;
 }
 
 function ModalContent({
@@ -39,9 +40,9 @@ function ModalContent({
   position: 'center' | 'bottom';
 } & ComponentProps<'div'>) {
   return (
-    <S.ModalWrapper position={position} {...props}>
+    <ModalWrapper position={position} {...props}>
       {children}
-    </S.ModalWrapper>
+    </ModalWrapper>
   );
 }
 
