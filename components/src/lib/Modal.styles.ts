@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 
-export const BackDrop = styled.div<{ backgroundColor: string }>`
+export const BackDrop = styled.div`
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100vh;
-  background-color: ${(props) => (props.backgroundColor ? props.backgroundColor : 'rgba(0, 0, 0, 0.35)')};
 `;
 
-export const ModalWrapper = styled.div<{ position: string }>`
+export const ModalWrapper = styled.div<{ position: 'center' | 'bottom' }>`
   position: fixed;
   left: 50%;
   top: ${(props) => props.position === 'center' && '50%'};
