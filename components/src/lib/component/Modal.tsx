@@ -4,7 +4,7 @@ import { ModalContext, useModalContext } from '../ModalContext';
 import { BackDrop, ModalWrapper } from './Modal.styles';
 import { useClickAway } from '../hooks/useClickAway';
 import { ModalBackDropProps, ModalButtonProps, ModalCloseButtonProps, ModalContentProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
-import useEscKeydown from '../hooks/useEscKeyDown';
+import useEscKeydown from '../hooks/useEscKeydown';
 
 function ModalMain({ isOpen, onClose, children }: ModalMainProps) {
   useEscKeydown(onClose);
