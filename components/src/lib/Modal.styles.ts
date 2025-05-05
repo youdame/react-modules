@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const BackDrop = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
@@ -9,6 +9,7 @@ export const BackDrop = styled.div`
 `;
 
 export const ModalWrapper = styled.div<{ position: 'center' | 'bottom' }>`
+  z-index: 1;
   position: fixed;
   left: 50%;
   top: ${(props) => props.position === 'center' && '50%'};

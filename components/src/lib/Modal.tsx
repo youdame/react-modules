@@ -1,11 +1,11 @@
-import { MouseEvent, ReactNode, useRef } from 'react';
-
+import { ReactNode } from 'react';
 import { ComponentProps } from 'react';
 import ModalPortal from './ModalPortal';
 import useEscClick from '../lib/hooks/useEscKey';
 import useScrollBlock from '../lib/hooks/useScrollBlock';
 import { ModalContext, useModalContext } from './ModalContext';
 import { BackDrop, ModalWrapper } from './Modal.styles';
+import { useClickAway } from './hooks/useClickAway';
 
 function ModalMain({ onClose, children }: { onClose: () => void; children: ReactNode } & ComponentProps<'div'>) {
   useEscClick(onClose);
@@ -19,16 +19,7 @@ function ModalMain({ onClose, children }: { onClose: () => void; children: React
 }
 
 function ModalBackDrop({ ...props }: ComponentProps<'div'>) {
-  const outsideRef = useRef<HTMLDivElement>(null);
-
-  const { onClose } = useModalContext();
-
-  const handleBackClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (outsideRef.current === e.target) {
-      onClose();
-    }
-  };
-  return <BackDrop {...props} ref={outsideRef} onClick={handleBackClick} />;
+  return <BackDrop {...props} />;
 }
 
 function ModalContent({
@@ -39,8 +30,11 @@ function ModalContent({
   children: ReactNode;
   position: 'center' | 'bottom';
 } & ComponentProps<'div'>) {
+  const { onClose } = useModalContext();
+  const outsideRef = useClickAway<HTMLDivElement>(onClose);
+
   return (
-    <ModalWrapper position={position} {...props}>
+    <ModalWrapper position={position} ref={outsideRef} {...props}>
       {children}
     </ModalWrapper>
   );
