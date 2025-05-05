@@ -2,8 +2,8 @@ import { MouseEvent, ReactNode, useRef } from 'react';
 import * as S from './Modal.styles';
 import { ComponentProps } from 'react';
 import ModalPortal from './ModalPortal';
-import useEscClick from './useEscKey';
-import useScrollBlock from './useScrollBlock';
+import useEscClick from '../lib/hooks/useEscKey';
+import useScrollBlock from '../lib/hooks/useScrollBlock';
 import { ModalContext, useModalContext } from './ModalContext';
 
 function ModalMain({ onClose, children }: { onClose: () => void; children: ReactNode } & ComponentProps<'div'>) {
