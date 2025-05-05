@@ -1,13 +1,12 @@
-import { ReactNode } from 'react';
-import { ComponentProps } from 'react';
 import ModalPortal from './ModalPortal';
 import useEscClick from '../lib/hooks/useEscKey';
 import useScrollBlock from '../lib/hooks/useScrollBlock';
 import { ModalContext, useModalContext } from './ModalContext';
 import { BackDrop, ModalWrapper } from './Modal.styles';
 import { useClickAway } from './hooks/useClickAway';
+import { ModalBackDropProps, ModalButtonProps, ModalCloseButtonProps, ModalContentProps, ModalMainProps, ModalTitleProps } from './Modal.types';
 
-function ModalMain({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: ReactNode } & ComponentProps<'div'>) {
+function ModalMain({ isOpen, onClose, children }: ModalMainProps) {
   useEscClick(onClose);
   useScrollBlock(isOpen);
 
@@ -18,18 +17,11 @@ function ModalMain({ isOpen, onClose, children }: { isOpen: boolean; onClose: ()
   );
 }
 
-function ModalBackDrop({ ...props }: ComponentProps<'div'>) {
+function ModalBackDrop({ ...props }: ModalBackDropProps) {
   return <BackDrop {...props} />;
 }
 
-function ModalContent({
-  children,
-  position,
-  ...props
-}: {
-  children: ReactNode;
-  position: 'center' | 'bottom';
-} & ComponentProps<'div'>) {
+function ModalContent({ children, position, ...props }: ModalContentProps) {
   const { onClose } = useModalContext();
   const outsideRef = useClickAway<HTMLDivElement>(onClose);
 
@@ -40,11 +32,11 @@ function ModalContent({
   );
 }
 
-function ModalTitle({ children, ...props }: { children: ReactNode } & ComponentProps<'h2'>) {
+function ModalTitle({ children, ...props }: ModalTitleProps) {
   return <h2 {...props}>{children}</h2>;
 }
 
-function ModalCloseButton({ children, ...props }: { children: ReactNode } & ComponentProps<'button'>) {
+function ModalCloseButton({ children, ...props }: ModalCloseButtonProps) {
   const { onClose } = useModalContext();
   return (
     <button onClick={onClose} {...props}>
@@ -53,7 +45,7 @@ function ModalCloseButton({ children, ...props }: { children: ReactNode } & Comp
   );
 }
 
-function ModalButton({ onClick, children, ...props }: { onClick: () => void; children: ReactNode } & ComponentProps<'button'>) {
+function ModalButton({ onClick, children, ...props }: ModalButtonProps) {
   return (
     <button onClick={onClick} {...props}>
       {children}
