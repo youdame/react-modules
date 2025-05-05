@@ -13,8 +13,7 @@ export type ExpirationStateKey = keyof ExpirationStateType;
 function useExpiration() {
   const [expiration, setExpiration] = useState<ExpirationStateType>(initialExpirationState);
 
-  const handleExpirationChange = (e: ChangeEvent<HTMLInputElement>, field: ExpirationStateKey) => {
-    const value = e.target.value;
+  const handleExpirationChange = (value: string, field: ExpirationStateKey) => {
     setExpiration((prev) => ({ ...prev, [field]: value }));
   };
 

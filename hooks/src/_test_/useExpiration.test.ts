@@ -7,8 +7,8 @@ describe('useExpiration 성공 케이스', () => {
     const { result } = renderHook(() => useExpiration());
 
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>, 'month');
-      result.current.handleExpirationChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>, 'year');
+      result.current.handleExpirationChange('', 'month');
+      result.current.handleExpirationChange('', 'year');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -18,8 +18,8 @@ describe('useExpiration 성공 케이스', () => {
     const { result } = renderHook(() => useExpiration());
 
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '11' } } as ChangeEvent<HTMLInputElement>, 'month');
-      result.current.handleExpirationChange({ target: { value: '25' } } as ChangeEvent<HTMLInputElement>, 'year');
+      result.current.handleExpirationChange('11', 'month');
+      result.current.handleExpirationChange('25', 'year');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -29,8 +29,8 @@ describe('useExpiration 성공 케이스', () => {
     const { result } = renderHook(() => useExpiration());
 
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '11' } } as ChangeEvent<HTMLInputElement>, 'month');
-      result.current.handleExpirationChange({ target: { value: '25' } } as ChangeEvent<HTMLInputElement>, 'year');
+      result.current.handleExpirationChange('11', 'month');
+      result.current.handleExpirationChange('25', 'year');
     });
 
     expect(result.current.expiration.month).toBe('11');
@@ -43,7 +43,7 @@ describe('useExpiration 실패 케이스', () => {
     const { result } = renderHook(() => useExpiration());
 
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '11d' } } as ChangeEvent<HTMLInputElement>, 'month');
+      result.current.handleExpirationChange('11d', 'month');
     });
 
     expect(result.current.errorState.errorMessage).toBe('숫자만 입력하세요.');
@@ -53,7 +53,7 @@ describe('useExpiration 실패 케이스', () => {
     const { result } = renderHook(() => useExpiration());
 
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '123' } } as ChangeEvent<HTMLInputElement>, 'month');
+      result.current.handleExpirationChange('123', 'month');
     });
 
     expect(result.current.errorState.errorMessage).toBe('2자리 숫자를 입력하세요.');
@@ -62,7 +62,7 @@ describe('useExpiration 실패 케이스', () => {
   it('유효하지 않은 연도를 입력하면 "유효한 연도를 입력하세요." 에러가 반환된다', () => {
     const { result } = renderHook(() => useExpiration());
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '23' } } as ChangeEvent<HTMLInputElement>, 'year');
+      result.current.handleExpirationChange('23', 'year');
     });
     expect(result.current.errorState.errorMessage).toBe('유효한 연도를 입력하세요.');
   });
@@ -70,8 +70,8 @@ describe('useExpiration 실패 케이스', () => {
   it('유효한 형식이지만 현재보다 이전 날짜면 "지나지 않은 날짜를 입력해주세요." 에러가 반환된다', () => {
     const { result } = renderHook(() => useExpiration());
     act(() => {
-      result.current.handleExpirationChange({ target: { value: '03' } } as ChangeEvent<HTMLInputElement>, 'month');
-      result.current.handleExpirationChange({ target: { value: '25' } } as ChangeEvent<HTMLInputElement>, 'year');
+      result.current.handleExpirationChange('03', 'month');
+      result.current.handleExpirationChange('25', 'year');
     });
     expect(result.current.errorState.errorMessage).toBe('지나지 않은 날짜를 입력해주세요.');
   });

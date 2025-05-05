@@ -15,8 +15,7 @@ export type CardNumberStateKey = keyof CarNumberStateType;
 function useCardNumber() {
   const [cardNumber, setCardNumber] = useState<CarNumberStateType>(initialCardNumberState);
 
-  const handleCardNumberChange = (e: ChangeEvent<HTMLInputElement>, field: CardNumberStateKey) => {
-    const value = e.target.value;
+  const handleCardNumberChange = (value: string, field: CardNumberStateKey) => {
     setCardNumber((prev) => ({ ...prev, [field]: value }));
   };
 

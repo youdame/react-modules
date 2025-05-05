@@ -7,7 +7,7 @@ describe('useCvc 성공 케이스', () => {
     const { result } = renderHook(() => useCvc());
 
     act(() => {
-      result.current.handleCvcChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handleCvcChange('');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -17,7 +17,7 @@ describe('useCvc 성공 케이스', () => {
     const { result } = renderHook(() => useCvc());
 
     act(() => {
-      result.current.handleCvcChange({ target: { value: '112' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handleCvcChange('112');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -27,7 +27,7 @@ describe('useCvc 성공 케이스', () => {
     const { result } = renderHook(() => useCvc());
 
     act(() => {
-      result.current.handleCvcChange({ target: { value: '11' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handleCvcChange('11');
     });
 
     expect(result.current.cvc).toBe('11');
@@ -39,7 +39,7 @@ describe('useCvc 실패 케이스', () => {
     const { result } = renderHook(() => useCvc());
 
     act(() => {
-      result.current.handleCvcChange({ target: { value: '11d' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handleCvcChange('11d');
     });
 
     expect(result.current.errorState.errorMessage).toBe('숫자만 입력하세요.');
@@ -49,8 +49,8 @@ describe('useCvc 실패 케이스', () => {
     const { result } = renderHook(() => useCvc());
 
     act(() => {
-      result.current.handleCvcChange({ target: { value: '1234' } } as ChangeEvent<HTMLInputElement>);
-      result.current.handleCvcChange({ target: { value: '34' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handleCvcChange('1234');
+      result.current.handleCvcChange('34');
     });
 
     expect(result.current.errorState.errorMessage).toBe('3자리 숫자를 입력하세요.');

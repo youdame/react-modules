@@ -1,5 +1,4 @@
 import { renderHook, act } from '@testing-library/react';
-import { ChangeEvent } from 'react';
 import usePassword from '../lib/password/usePassword';
 
 describe('usePassword 성공 케이스', () => {
@@ -7,7 +6,7 @@ describe('usePassword 성공 케이스', () => {
     const { result } = renderHook(() => usePassword());
 
     act(() => {
-      result.current.handlePasswordChange({ target: { value: '' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handlePasswordChange('');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -17,7 +16,7 @@ describe('usePassword 성공 케이스', () => {
     const { result } = renderHook(() => usePassword());
 
     act(() => {
-      result.current.handlePasswordChange({ target: { value: '11' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handlePasswordChange('11');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -27,7 +26,7 @@ describe('usePassword 성공 케이스', () => {
     const { result } = renderHook(() => usePassword());
 
     act(() => {
-      result.current.handlePasswordChange({ target: { value: '11' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handlePasswordChange('11');
     });
 
     expect(result.current.password).toBe('11');
@@ -39,7 +38,7 @@ describe('usePassword 실패 케이스', () => {
     const { result } = renderHook(() => usePassword());
 
     act(() => {
-      result.current.handlePasswordChange({ target: { value: '11d' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handlePasswordChange('11d');
     });
 
     expect(result.current.errorState.errorMessage).toBe('숫자만 입력하세요.');
@@ -49,8 +48,8 @@ describe('usePassword 실패 케이스', () => {
     const { result } = renderHook(() => usePassword());
 
     act(() => {
-      result.current.handlePasswordChange({ target: { value: '123' } } as ChangeEvent<HTMLInputElement>);
-      result.current.handlePasswordChange({ target: { value: '3' } } as ChangeEvent<HTMLInputElement>);
+      result.current.handlePasswordChange('12');
+      result.current.handlePasswordChange('3');
     });
 
     expect(result.current.errorState.errorMessage).toBe('2자리 숫자를 입력하세요.');

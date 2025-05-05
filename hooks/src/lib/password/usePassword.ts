@@ -1,11 +1,10 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import validatePassword from './validatePassword';
 
 function usePassword() {
   const [password, setPassword] = useState<string>('');
 
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const handlePasswordChange = (value: string) => {
     setPassword(value);
   };
 

@@ -1,5 +1,4 @@
 import { renderHook, act } from '@testing-library/react';
-import { ChangeEvent } from 'react';
 import useCardNumber from '../lib/cardNumber/useCardNumber';
 
 describe('useCardNumber 성공 케이스', () => {
@@ -7,8 +6,8 @@ describe('useCardNumber 성공 케이스', () => {
     const { result } = renderHook(() => useCardNumber());
 
     act(() => {
-      result.current.handleCardNumberChange({ target: { value: '1234' } } as ChangeEvent<HTMLInputElement>, 'first');
-      result.current.handleCardNumberChange({ target: { value: '1134' } } as ChangeEvent<HTMLInputElement>, 'second');
+      result.current.handleCardNumberChange('1234', 'first');
+      result.current.handleCardNumberChange('1134', 'second');
     });
 
     expect(result.current.errorState.errorMessage).toBe('');
@@ -18,7 +17,7 @@ describe('useCardNumber 성공 케이스', () => {
     const { result } = renderHook(() => useCardNumber());
 
     act(() => {
-      result.current.handleCardNumberChange({ target: { value: '1234' } } as ChangeEvent<HTMLInputElement>, 'first');
+      result.current.handleCardNumberChange('1234', 'first');
     });
 
     expect(result.current.cardNumber.first).toBe('1234');
@@ -30,7 +29,7 @@ describe('useCardNumber 실패 케이스', () => {
     const { result } = renderHook(() => useCardNumber());
 
     act(() => {
-      result.current.handleCardNumberChange({ target: { value: '123d' } } as ChangeEvent<HTMLInputElement>, 'first');
+      result.current.handleCardNumberChange('123d', 'first');
     });
 
     expect(result.current.errorState.errorMessage).toBe('숫자만 입력하세요.');
@@ -40,7 +39,7 @@ describe('useCardNumber 실패 케이스', () => {
     const { result } = renderHook(() => useCardNumber());
 
     act(() => {
-      result.current.handleCardNumberChange({ target: { value: '123' } } as ChangeEvent<HTMLInputElement>, 'first');
+      result.current.handleCardNumberChange('123', 'first');
     });
 
     expect(result.current.errorState.errorMessage).toBe('4자리 숫자를 입력하세요.');
@@ -50,7 +49,7 @@ describe('useCardNumber 실패 케이스', () => {
     const { result } = renderHook(() => useCardNumber());
 
     act(() => {
-      result.current.handleCardNumberChange({ target: { value: '12345' } } as ChangeEvent<HTMLInputElement>, 'first');
+      result.current.handleCardNumberChange('12345', 'first');
     });
 
     expect(result.current.errorState.errorMessage).toBe('4자리 숫자를 입력하세요.');
