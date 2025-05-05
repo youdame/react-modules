@@ -1,10 +1,10 @@
-import ModalPortal from './ModalPortal';
-import useEscClick from '../lib/hooks/useEscKey';
-import useScrollBlock from '../lib/hooks/useScrollBlock';
-import { ModalContext, useModalContext } from './ModalContext';
+import ModalPortal from '../ModalPortal';
+import useEscClick from '../hooks/useEscKey';
+import useScrollBlock from '../hooks/useScrollBlock';
+import { ModalContext, useModalContext } from '../ModalContext';
 import { BackDrop, ModalWrapper } from './Modal.styles';
-import { useClickAway } from './hooks/useClickAway';
-import { ModalBackDropProps, ModalButtonProps, ModalCloseButtonProps, ModalContentProps, ModalMainProps, ModalTitleProps } from './Modal.types';
+import { useClickAway } from '../hooks/useClickAway';
+import { ModalBackDropProps, ModalButtonProps, ModalCloseButtonProps, ModalContentProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
 
 function ModalMain({ isOpen, onClose, children }: ModalMainProps) {
   useEscClick(onClose);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 
-import Modal from './lib/Modal';
+import Modal from './lib/component/Modal';
 import styled from '@emotion/styled';
 
 function App() {

@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import validateCvc from './validateCvc';
 /**
- * CVC(Card Verification Code) 입력 상태를 관리하고 유효성 검사를 수행하는 훅입니다.
+ * CVC 입력을 관리하고 유효성을 검증하는 커스텀 훅입니다.
  *
+ * - 3자리 숫자 형식의 CVC만 허용됩니다.
+ * - 에러 메시지는 `errorState`를 통해 제공됩니다.
+
+
  * @returns {{
  *   cvc: string; // 현재 입력된 CVC 값
  *   errorState: { errorState: boolean; errorMessage: string }; // 유효성 검사 결과

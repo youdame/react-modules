@@ -15,6 +15,7 @@ import { CardNumberStateKey, CarNumberStateType } from '../types/cardNumber';
  *   handleCardNumberChange: (value: string, field: CardNumberStateKey) => void; // 카드 번호 입력 핸들러
  * }}
  */
+
 function useCardNumber() {
   const [cardNumber, setCardNumber] = useState<CarNumberStateType>(initialCardNumberState);
 
