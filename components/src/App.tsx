@@ -18,7 +18,7 @@ function App() {
   return (
     <div>
       {isOpen && (
-        <Modal onClose={handleButtonToggle}>
+        <Modal isOpen={isOpen} onClose={handleButtonToggle}>
           <CustomBackDrop />
           <Modal.Content position="bottom" style={{ width: '300px', height: '300px', backgroundColor: 'white' }}>
             <Modal.Title>하이</Modal.Title>

@@ -7,9 +7,9 @@ import { ModalContext, useModalContext } from './ModalContext';
 import { BackDrop, ModalWrapper } from './Modal.styles';
 import { useClickAway } from './hooks/useClickAway';
 
-function ModalMain({ onClose, children }: { onClose: () => void; children: ReactNode } & ComponentProps<'div'>) {
+function ModalMain({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: ReactNode } & ComponentProps<'div'>) {
   useEscClick(onClose);
-  useScrollBlock();
+  useScrollBlock(isOpen);
 
   return (
     <ModalContext.Provider value={{ onClose }}>
