@@ -1,16 +1,7 @@
 import { useState } from 'react';
 import validateCardNumber from './validateCardNumber';
-
-export type CarNumberStateType = typeof initialCardNumberState;
-
-const initialCardNumberState = {
-  first: '',
-  second: '',
-  third: '',
-  fourth: ''
-};
-
-export type CardNumberStateKey = keyof CarNumberStateType;
+import { initialCardNumberState } from '../constants/cardNumber';
+import { CardNumberStateKey, CarNumberStateType } from '../types/cardNumber';
 
 function useCardNumber() {
   const [cardNumber, setCardNumber] = useState<CarNumberStateType>(initialCardNumberState);

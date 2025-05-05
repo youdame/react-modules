@@ -1,14 +1,7 @@
 import { useState } from 'react';
 import validateExpiration from './validateExpiration';
-
-export type ExpirationStateType = typeof initialExpirationState;
-
-const initialExpirationState = {
-  year: '',
-  month: ''
-};
-
-export type ExpirationStateKey = keyof ExpirationStateType;
+import { initialExpirationState } from '../constants/expiration';
+import { ExpirationStateKey, ExpirationStateType } from '../types/expiration';
 
 function useExpiration() {
   const [expiration, setExpiration] = useState<ExpirationStateType>(initialExpirationState);

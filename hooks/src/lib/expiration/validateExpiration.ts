@@ -1,5 +1,5 @@
+import { ExpirationStateType } from '../types/expiration';
 import validation from '../validation';
-import { ExpirationStateType } from './useExpiration';
 
 const validateExpiration = (expiration: ExpirationStateType) => {
   const { errorState, errorMessage } = Object.entries(expiration).reduce(
