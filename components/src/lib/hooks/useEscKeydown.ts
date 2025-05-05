@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useEscKey = (callback: () => void) => {
+const useEscKeydown = (callback: () => void) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -12,4 +12,4 @@ const useEscKey = (callback: () => void) => {
   }, [callback]);
 };
 
-export default useEscKey;
+export default useEscKeydown;
