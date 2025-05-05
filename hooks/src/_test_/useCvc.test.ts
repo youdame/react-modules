@@ -2,9 +2,14 @@ import { renderHook, act } from '@testing-library/react';
 import useCvc from '../lib/cvc/useCvc';
 import { TEST_CVC } from '../_fixture_/cvc.fixture';
 
+const setupHook = () => {
+  const hook = renderHook(() => useCvc());
+  return hook.result;
+};
+
 describe('useCvc 성공 케이스', () => {
   it('입력값이 없을 경우, 에러 메시지는 비어 있어야 한다.', () => {
-    const { result } = renderHook(() => useCvc());
+    const result = setupHook();
 
     act(() => {
       result.current.handleCvcChange(TEST_CVC.empty);
@@ -14,8 +19,7 @@ describe('useCvc 성공 케이스', () => {
   });
 
   it('입력값이 유효할 경우, 에러 메시지는 비어 있어야 한다.', () => {
-    const { result } = renderHook(() => useCvc());
-
+    const result = setupHook();
     act(() => {
       result.current.handleCvcChange(TEST_CVC.valid);
     });
@@ -24,8 +28,7 @@ describe('useCvc 성공 케이스', () => {
   });
 
   it('입력값이 정확히 업데이트 되어야 한다.', () => {
-    const { result } = renderHook(() => useCvc());
-
+    const result = setupHook();
     act(() => {
       result.current.handleCvcChange('11');
     });
@@ -36,7 +39,7 @@ describe('useCvc 성공 케이스', () => {
 
 describe('useCvc 실패 케이스', () => {
   it('숫자가 아닌 문자를 입력하면 "숫자만 입력하세요." 에러가 반환된다', () => {
-    const { result } = renderHook(() => useCvc());
+    const result = setupHook();
 
     act(() => {
       result.current.handleCvcChange(TEST_CVC.invalid.nonNumeric);
@@ -46,7 +49,7 @@ describe('useCvc 실패 케이스', () => {
   });
 
   it('3자리 숫자가 아니면 "3자리 숫자를 입력하세요." 에러가 반환된다', () => {
-    const { result } = renderHook(() => useCvc());
+    const result = setupHook();
 
     act(() => {
       result.current.handleCvcChange(TEST_CVC.invalid.tooLong);
