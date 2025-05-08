@@ -6,21 +6,24 @@ export type ModalPosition = 'center' | 'bottom';
  * @typedef ModalMainProps
  * @property {boolean} isOpen - 모달이 열려 있는 상태 여부
  * @property {() => void} onClose - 모달을 닫는 함수
+ *  @property {'center' | 'bottom'} position - 모달 콘텐츠의 위치
  * @property {ReactNode} children - 모달 하위 요소
  */
 export type ModalMainProps = {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  position: ModalPosition;
+  size: 'small' | 'medium' | 'large';
+  container?: ReactNode;
 } & ComponentProps<'div'>;
 
 /**
  * @typedef ModalContentProps
- * @property {'center' | 'bottom'} position - 모달 콘텐츠의 위치
+ 
  * @property {ReactNode} children - 콘텐츠 자식 노드
  */
 export type ModalContentProps = {
-  position: ModalPosition;
   children: ReactNode;
 } & ComponentProps<'div'>;
 

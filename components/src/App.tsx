@@ -17,22 +17,17 @@ function App() {
 
   return (
     <div>
-      {isOpen && (
-        <Modal isOpen={isOpen} onClose={handleButtonToggle}>
-          <CustomBackDrop />
-          <Modal.Content position="bottom" style={{ width: '300px', height: '300px', backgroundColor: 'white' }}>
-            <Modal.Title>하이</Modal.Title>
-            <Modal.CloseButton style={{ position: 'absolute', right: '24px', top: '24px' }}>
-              <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M14.8167 1.41L13.4067 0L7.81665 5.59L2.22665 0L0.81665 1.41L6.40665 7L0.81665 12.59L2.22665 14L7.81665 8.41L13.4067 14L14.8167 12.59L9.22665 7L14.8167 1.41Z"
-                  fill="black"
-                />
-              </svg>
-            </Modal.CloseButton>
-          </Modal.Content>
-        </Modal>
-      )}
+      <Modal isOpen={isOpen} onClose={handleButtonToggle} position="center" size="large">
+        <CustomBackDrop />
+        <Modal.Content style={{ backgroundColor: 'white', padding: '24px 36px', borderRadius: '8px' }}>
+          <Modal.Title>아이디를 입력해 주세요.</Modal.Title>
+          <p>아이디는 필수로 입력해야 합니다.</p>
+
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <Modal.CTAButton onClick={handleButtonToggle}>확인</Modal.CTAButton>
+          </div>
+        </Modal.Content>
+      </Modal>
 
       <button onClick={handleButtonToggle}>모달 열기</button>
     </div>

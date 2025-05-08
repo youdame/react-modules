@@ -5,13 +5,17 @@ import { BackDrop, ModalWrapper } from './Modal.styles';
 import { useClickAway } from '../hooks/useClickAway';
 import { ModalBackDropProps, ModalButtonProps, ModalCloseButtonProps, ModalContentProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
 import useEscKeydown from '../hooks/useEscKeydown';
+import { createPortal } from 'react-dom';
+import ActionButton from '../CTAButton.tsx/CTAButton';
+import CTAButton from '../CTAButton.tsx/CTAButton';
 
-function ModalMain({ isOpen, onClose, children }: ModalMainProps) {
+function ModalMain({ isOpen, size, onClose, position, children }: ModalMainProps) {
   useEscKeydown(onClose);
   useScrollBlock(isOpen);
 
+  if (!isOpen) return null;
   return (
-    <ModalContext.Provider value={{ onClose }}>
+    <ModalContext.Provider value={{ onClose, position, size }}>
       <ModalPortal>{children}</ModalPortal>
     </ModalContext.Provider>
   );
@@ -21,12 +25,12 @@ function ModalBackDrop({ ...props }: ModalBackDropProps) {
   return <BackDrop {...props} />;
 }
 
-function ModalContent({ children, position, ...props }: ModalContentProps) {
-  const { onClose } = useModalContext();
+function ModalContent({ children, ...props }: ModalContentProps) {
+  const { onClose, position, size } = useModalContext();
   const outsideRef = useClickAway<HTMLDivElement>(onClose);
 
   return (
-    <ModalWrapper position={position} ref={outsideRef} {...props}>
+    <ModalWrapper size={size} position={position} ref={outsideRef} {...props}>
       {children}
     </ModalWrapper>
   );
@@ -45,11 +49,19 @@ function ModalCloseButton({ children, ...props }: ModalCloseButtonProps) {
   );
 }
 
-function ModalButton({ onClick, children, ...props }: ModalButtonProps) {
+function ModalCTAButton({ onClick, children, ...props }: ModalButtonProps) {
   return (
-    <button onClick={onClick} {...props}>
+    <CTAButton onClick={onClick} {...props}>
       {children}
-    </button>
+    </CTAButton>
+  );
+}
+
+function ModalActionButton({ onClick, children, ...props }: ModalButtonProps) {
+  return (
+    <ActionButton onClick={onClick} {...props}>
+      {children}
+    </ActionButton>
   );
 }
 
@@ -58,7 +70,7 @@ const Modal = Object.assign(ModalMain, {
   Content: ModalContent,
   Title: ModalTitle,
   CloseButton: ModalCloseButton,
-  Button: ModalButton
+  CTAButton: ModalCTAButton
 });
 
 export default Modal;
