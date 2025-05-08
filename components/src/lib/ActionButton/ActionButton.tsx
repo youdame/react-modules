@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import { ComponentProps } from 'react';
 
-export default function CTAButton({ children, ...props }: ComponentProps<'button'>) {
+export default function ActionButton({ children, ...props }: ComponentProps<'button'>) {
   return (
     <button css={buttonStyle} {...props}>
       {children}
@@ -11,12 +11,13 @@ export default function CTAButton({ children, ...props }: ComponentProps<'button
 }
 
 const buttonStyle = css`
-  background-color: #333;
-  color: white;
+  background-color: white;
+  color: rgba(51, 51, 51, 0.75);
   font-size: 15px;
   padding: 6px 20px;
   border: none;
   border-radius: 5px;
   font-weight: 700;
   cursor: pointer;
+  border: 1px solid rgba(51, 51, 51, 0.25);
 `;

@@ -16,6 +16,8 @@ export const ModalWrapper = styled.div<{
   top: ${({ position }) => (position === 'bottom' ? 'auto' : '50%')};
   bottom: ${({ position }) => (position === 'bottom' ? '5%' : 'auto')};
   left: 50%;
+  padding: 24px 32px;
+  border-radius: 8px;
   background-color: white;
   transform: ${({ position }) => (position === 'bottom' ? 'translateX(-50%)' : 'translate(-50%, -50%)')};
   z-index: 1;
