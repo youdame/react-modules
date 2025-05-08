@@ -1,14 +1,10 @@
 import ModalPortal from '../ModalPortal';
 import useScrollBlock from '../hooks/useScrollBlock';
 import { ModalContext, useModalContext } from '../ModalContext';
-import { BackDrop, ModalWrapper } from './Modal.styles';
+import { BackDrop, ModalWrapper, StyledFooter } from './Modal.styles';
 import { useClickAway } from '../hooks/useClickAway';
-import { ModalBackDropProps, ModalButtonProps, ModalCloseButtonProps, ModalContentProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
+import { ModalBackDropProps, ModalCloseButtonProps, ModalContentProps, ModalFooterProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
 import useEscKeydown from '../hooks/useEscKeydown';
-import CTAButton from '../CTAButton.tsx/CTAButton';
-import styled from '@emotion/styled';
-import ActionButton from '../ActionButton/ActionButton';
-import { ComponentProps } from 'react';
 
 function ModalMain({ isOpen, size, onClose, position, children }: ModalMainProps) {
   useEscKeydown(onClose);
@@ -38,7 +34,7 @@ function ModalContent({ children, ...props }: ModalContentProps) {
 }
 
 function ModalTitle({ children, ...props }: ModalTitleProps) {
-  return <h2 {...props}>{children}</h2>;
+  return <p {...props}>{children}</p>;
 }
 
 function ModalCloseButton({ children, ...props }: ModalCloseButtonProps) {
@@ -49,22 +45,6 @@ function ModalCloseButton({ children, ...props }: ModalCloseButtonProps) {
     </button>
   );
 }
-
-type ModalFooterProps = {
-  align?: 'left' | 'center' | 'right';
-} & React.HTMLAttributes<HTMLDivElement>;
-
-const justifyMap = {
-  left: 'flex-start',
-  center: 'center',
-  right: 'flex-end'
-} as const;
-
-const StyledFooter = styled.div<{ align?: ModalFooterProps['align'] }>`
-  display: flex;
-  justify-content: ${({ align = 'right' }) => justifyMap[align]};
-  gap: 12px;
-`;
 
 function ModalFooter({ align = 'right', children, ...props }: ModalFooterProps) {
   return (

@@ -2,6 +2,8 @@ import { ReactNode, ComponentProps } from 'react';
 
 export type ModalPosition = 'center' | 'bottom';
 
+export type ModalSizeType = 'small' | 'medium' | 'large';
+
 /**
  * @typedef ModalMainProps
  * @property {boolean} isOpen - 모달이 열려 있는 상태 여부
@@ -14,7 +16,7 @@ export type ModalMainProps = {
   onClose: () => void;
   children: ReactNode;
   position: ModalPosition;
-  size: 'small' | 'medium' | 'large';
+  size: ModalSizeType;
   container?: ReactNode;
 } & ComponentProps<'div'>;
 
@@ -57,3 +59,7 @@ export type ModalButtonProps = {
   onClick: () => void;
   children: ReactNode;
 } & ComponentProps<'button'>;
+
+export type ModalFooterProps = {
+  align?: 'left' | 'center' | 'right';
+} & ComponentProps<'div'>;

@@ -1,9 +1,10 @@
 import { createContext, useContext } from 'react';
+import { ModalSizeType } from './type/Modal.types';
 
 type ModalContextType = {
   onClose: () => void;
   position: 'bottom' | 'center';
-  size: 'small' | 'medium' | 'large';
+  size: ModalSizeType;
 };
 
 export const ModalContext = createContext<ModalContextType | null>(null);
