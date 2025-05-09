@@ -1,8 +1,8 @@
-import ActionButton from '../component/ActionButton/ActionButton';
-import CTAButton from '../component/CTAButton.tsx/CTAButton';
-import Modal from '../component/Modal';
-import { CustomBackDrop, ModalTitle } from '../component/Modal.styles';
-import { ModalSizeType } from '../type/Modal.types';
+import ActionButton from '../ActionButton/ActionButton';
+import CTAButton from '../CTAButton.tsx/CTAButton';
+import Modal from '../Modal';
+import { CustomBackDrop, ModalTitle } from '../Modal.styles';
+import { ModalSizeType } from '../../type/Modal.types';
 
 interface ConfirmModalProps {
   size?: ModalSizeType;
@@ -19,7 +19,7 @@ export default function ConfirmModal({
   size = 'medium',
   isOpen,
   onClose,
-  title = '확인',
+  title,
   message,
   cancelText = '취소',
   confirmText = '확인',
@@ -35,7 +35,7 @@ export default function ConfirmModal({
           <ActionButton onClick={onClose}>{cancelText}</ActionButton>
           <CTAButton
             onClick={() => {
-              onConfirm?.();
+              onConfirm();
               onClose();
             }}
           >

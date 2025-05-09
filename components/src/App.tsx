@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import AlertModal from './lib/AlertModal/AlertModal';
-import ConfirmModal from './lib/ConfirmModal/ConfirmModal';
+import AlertModal from './lib/component/AlertModal/AlertModal';
+import ConfirmModal from './lib/component/ConfirmModal/ConfirmModal';
 import PromptModal from './lib/PromptModal/PromptModal';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         onClose={() => setPromptOpen(false)}
         title="쿠폰 번호를 입력해 주세요"
         placeholder="GCEXX46Z"
-        onConfirm={(code) => console.log('입력값:', code)}
+        onConfirm={() => alert('확인!')}
       />
     </div>
   );

@@ -1,7 +1,7 @@
-import Modal from '../component/Modal';
-import { CustomBackDrop, ModalTitle } from '../component/Modal.styles';
-import CTAButton from '../component/CTAButton.tsx/CTAButton';
-import { ModalSizeType } from '../type/Modal.types';
+import Modal from '../Modal';
+import { CustomBackDrop, ModalTitle } from '../Modal.styles';
+import CTAButton from '../CTAButton.tsx/CTAButton';
+import { ModalSizeType } from '../../type/Modal.types';
 
 interface AlertModalProps {
   size?: ModalSizeType;

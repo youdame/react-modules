@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Modal from '../component/Modal';
-import { CustomBackDrop, ModalTitle } from '../component/Modal.styles';
-import ModalInput from '../component/Input/input';
-import ActionButton from '../component/ActionButton/ActionButton';
-import CTAButton from '../component/CTAButton.tsx/CTAButton';
+import Modal from '../Modal';
+import { CustomBackDrop, ModalTitle } from '../Modal.styles';
+import ModalInput from '../Input/input';
+import ActionButton from '../ActionButton/ActionButton';
+import CTAButton from '../CTAButton.tsx/CTAButton';
 
 interface PromptModalProps {
   isOpen: boolean;
