@@ -1,27 +1,25 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-interface ModalPortalProps {
+interface Props {
   children: React.ReactNode;
-  container?: HTMLElement;
 }
 
-export default function ModalPortal({ children, container }: ModalPortalProps) {
-  const localContainer = useRef<HTMLElement | null>(null);
+export default function ModalPortal({ children }: Props) {
+  const elementRef = useRef<HTMLDivElement | null>(null);
+
+  if (!elementRef.current) {
+    elementRef.current = document.createElement('div');
+  }
 
   useEffect(() => {
-    if (!container) {
-      const el = document.createElement('div');
-      document.body.appendChild(el);
-      localContainer.current = el;
+    const modalRoot = elementRef.current!;
+    document.body.appendChild(modalRoot);
 
-      return () => {
-        document.body.removeChild(el);
-      };
-    }
-  }, [container]);
+    return () => {
+      document.body.removeChild(modalRoot);
+    };
+  }, []);
 
-  if (!container && !localContainer.current) return null;
-
-  return createPortal(children, container ?? localContainer.current!);
+  return createPortal(children, elementRef.current);
 }
