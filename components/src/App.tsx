@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AlertModal from './lib/component/AlertModal/AlertModal';
 import ConfirmModal from './lib/component/ConfirmModal/ConfirmModal';
-import PromptModal from './lib/PromptModal/PromptModal';
+import PromptModal from './lib/component/PromptModal/PromptModal';
 
 function App() {
   const [isAlertOpen, setAlertOpen] = useState(false);
@@ -11,7 +11,7 @@ function App() {
   return (
     <div style={{ padding: '40px', display: 'flex', gap: '16px' }}>
       <button onClick={() => setAlertOpen(true)}>모달 1 열기</button>
-      <AlertModal size={'large'} isOpen={isAlertOpen} onClose={() => setAlertOpen(false)} message="아이디는 필수로 입력해야 합니다." />
+      <AlertModal size="large" isOpen={isAlertOpen} onClose={() => setAlertOpen(false)} message="아이디는 필수로 입력해야 합니다." />
 
       <button onClick={() => setConfirmOpen(true)}>모달 2 열기</button>
       <ConfirmModal

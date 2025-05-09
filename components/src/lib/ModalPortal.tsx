@@ -7,7 +7,6 @@ interface Props {
 
 export default function ModalPortal({ children }: Props) {
   const elementRef = useRef<HTMLDivElement | null>(null);
-
   if (!elementRef.current) {
     elementRef.current = document.createElement('div');
   }
@@ -20,6 +19,8 @@ export default function ModalPortal({ children }: Props) {
       document.body.removeChild(modalRoot);
     };
   }, []);
+
+  console.log(elementRef.current);
 
   return createPortal(children, elementRef.current);
 }

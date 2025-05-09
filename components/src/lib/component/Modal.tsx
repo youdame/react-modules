@@ -5,17 +5,32 @@ import { BackDrop, ModalWrapper, StyledFooter } from './Modal.styles';
 import { useClickAway } from '../hooks/useClickAway';
 import { ModalBackDropProps, ModalCloseButtonProps, ModalContentProps, ModalFooterProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
 import useEscKeydown from '../hooks/useEscKeydown';
+import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
 function ModalMain({ isOpen, size, onClose, position, children }: ModalMainProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
   useEscKeydown(onClose);
   useScrollBlock(isOpen);
 
+  // create div for portal
+  if (!containerRef.current) {
+    containerRef.current = document.createElement('div');
+  }
+
+  // append to body
+  useEffect(() => {
+    const el = containerRef.current!;
+    document.body.appendChild(el);
+    return () => {
+      document.body.removeChild(el);
+    };
+  }, []);
+
   if (!isOpen) return null;
-  return (
-    <ModalContext.Provider value={{ onClose, position, size }}>
-      <ModalPortal>{children}</ModalPortal>
-    </ModalContext.Provider>
-  );
+  console.log(containerRef.current);
+  return createPortal(<ModalContext.Provider value={{ onClose, position, size }}>{children}</ModalContext.Provider>, containerRef.current);
 }
 
 function ModalBackDrop({ ...props }: ModalBackDropProps) {

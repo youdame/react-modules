@@ -32,7 +32,9 @@ export default function ConfirmModal({
         <ModalTitle>{title}</ModalTitle>
         <p>{message}</p>
         <Modal.Footer>
-          <ActionButton onClick={onClose}>{cancelText}</ActionButton>
+          <ActionButton autoFocus onClick={onClose}>
+            {cancelText}
+          </ActionButton>
           <CTAButton
             onClick={() => {
               onConfirm();

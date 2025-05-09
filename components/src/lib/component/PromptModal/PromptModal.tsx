@@ -31,7 +31,7 @@ export default function PromptModal({
       <CustomBackDrop />
       <Modal.Content style={{ backgroundColor: 'white', padding: '24px 32px', borderRadius: '8px', gap: '12px' }}>
         <ModalTitle>{title}</ModalTitle>
-        <ModalInput placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
+        <ModalInput autoFocus placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
         <Modal.Footer>
           <ActionButton onClick={onClose}>{cancelText}</ActionButton>
           <CTAButton

@@ -20,7 +20,9 @@ export default function AlertModal({ size = 'medium', isOpen, onClose, title = '
         {title && <ModalTitle>{title}</ModalTitle>}
         <p>{message}</p>
         <Modal.Footer>
-          <CTAButton onClick={onClose}>{confirmText}</CTAButton>
+          <CTAButton autoFocus onClick={onClose}>
+            {confirmText}
+          </CTAButton>
         </Modal.Footer>
       </Modal.Content>
     </Modal>
