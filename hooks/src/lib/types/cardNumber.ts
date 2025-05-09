@@ -1,5 +1,5 @@
 import { initialCardNumberState } from '../constants/cardNumber';
 
-export type CarNumberStateType = typeof initialCardNumberState;
+export type CardNumberStateType = typeof initialCardNumberState;
 
-export type CardNumberStateKey = keyof CarNumberStateType;
+export type CardNumberStateKey = keyof CardNumberStateType;

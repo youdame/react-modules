@@ -1,7 +1,7 @@
-import { CardNumberStateKey, CarNumberStateType } from '../types/cardNumber';
+import { CardNumberStateKey, CardNumberStateType } from '../types/cardNumber';
 import validation from '../validation';
 
-const validateCardNumber = (cardNumber: CarNumberStateType) => {
+const validateCardNumber = (cardNumber: CardNumberStateType) => {
   const { errorState, errorMessage } = Object.entries(cardNumber).reduce(
     (acc, [k, value]) => {
       const key = k as CardNumberStateKey;
