@@ -32,7 +32,6 @@ ESC 키나 외부 클릭 시 자동으로 닫히며, position, size 등을 통�
 
 export default meta;
 type Story = StoryObj<typeof Modal>;
-
 interface ModalExampleProps {
   position: 'center' | 'bottom';
   openButtonLabel: string;
