@@ -16,7 +16,7 @@ export const CARD_RULES: {
   }
 ];
 
-export const CARD_FORMAT_BLOCKS: Record<CardCompany, number[]> = {
+const CARD_FORMAT_BLOCKS: Record<CardCompany, number[]> = {
   Visa: [4, 4, 4, 4],
   MasterCard: [4, 4, 4, 4],
   AMEX: [4, 6, 5],
@@ -26,21 +26,21 @@ export const CARD_FORMAT_BLOCKS: Record<CardCompany, number[]> = {
 };
 
 export const detectCardCompany = (number: string): CardCompany => {
-  const clean = number.replace(/\D/g, '');
+  const digitsOnly = number.replace(/\D/g, '');
   for (const rule of CARD_RULES) {
-    if (rule.pattern.test(clean) && clean.length <= rule.validLength) return rule.company;
+    if (rule.pattern.test(digitsOnly) && digitsOnly.length <= rule.validLength) return rule.company;
   }
   return 'Unknown';
 };
 
 export const formatCardNumber = (input: string, company: CardCompany) => {
-  const clean = input.replace(/\D/g, '');
+  const digitsOnly = input.replace(/\D/g, '');
   const blocks = CARD_FORMAT_BLOCKS[company];
 
   return blocks
     .map((blockSize, i, arr) => {
       const start = arr.slice(0, i).reduce((acc, len) => acc + len, 0);
-      return clean.slice(start, start + blockSize);
+      return digitsOnly.slice(start, start + blockSize);
     })
     .filter(Boolean)
     .join('-');

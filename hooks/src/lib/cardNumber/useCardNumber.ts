@@ -22,8 +22,8 @@ function useCardNumber() {
   const validationResult = validateCardNumber(rawValue, company);
 
   const handleCardNumberChange = (input: string) => {
-    const clean = input.replace(/\D/g, '');
-    setRawValue(clean);
+    const digitsOnly = input.replace(/\D/g, '');
+    setRawValue(digitsOnly);
   };
 
   return {
