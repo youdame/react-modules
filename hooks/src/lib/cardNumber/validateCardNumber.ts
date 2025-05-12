@@ -14,10 +14,6 @@ export function validateCardNumber(
     return { errorState: false, errorMessage: '' };
   }
 
-  if (!/^\d*$/.test(digitsOnly)) {
-    return { errorState: true, errorMessage: '숫자만 입력하세요.' };
-  }
-
   const expectedLength = CARD_RULES.find((rule) => rule.company === company)?.validLength;
 
   if (expectedLength && digitsOnly.length !== expectedLength) {
