@@ -1,29 +1,31 @@
-import { CardNumberStateKey, CardNumberStateType } from '../types/cardNumber';
-import validation from '../validation';
+import { CARD_RULES } from '../CardCompany/checkCompany';
+import { CardCompany } from '../types/cardCompany';
 
-const validateCardNumber = (cardNumber: CardNumberStateType) => {
-  const { errorState, errorMessage } = Object.entries(cardNumber).reduce(
-    (acc, [k, value]) => {
-      const key = k as CardNumberStateKey;
-      if (!validation.isNumber(value) && value !== '') {
-        return {
-          errorState: { ...acc.errorState, [key]: true },
-          errorMessage: '숫자만 입력하세요.'
-        };
-      }
+export function validateCardNumber(
+  cardNumber: string,
+  company: CardCompany
+): {
+  errorState: boolean;
+  errorMessage: string;
+} {
+  const clean = cardNumber.replace(/\D/g, '');
 
-      if (!validation.isValidLength(value, 4) && value !== '') {
-        return {
-          errorState: { ...acc.errorState, [key]: true },
-          errorMessage: '4자리 숫자를 입력하세요.'
-        };
-      }
-      return acc;
-    },
-    { errorState: { first: false, second: false, third: false, fourth: false }, errorMessage: '' }
-  );
+  if (clean.length === 0) {
+    return { errorState: false, errorMessage: '' };
+  }
 
-  return { errorState, errorMessage };
-};
+  if (!/^\d*$/.test(clean)) {
+    return { errorState: true, errorMessage: '숫자만 입력하세요.' };
+  }
 
-export default validateCardNumber;
+  const expectedLength = CARD_RULES.find((rule) => rule.company === company)?.validLength;
+
+  if (expectedLength && clean.length !== expectedLength) {
+    return {
+      errorState: true,
+      errorMessage: `${company} 카드는 ${expectedLength}자리 숫자를 입력하세요.`
+    };
+  }
+
+  return { errorState: false, errorMessage: '' };
+}

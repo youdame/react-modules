@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import validateCardNumber from './validateCardNumber';
-import { initialCardNumberState } from '../constants/cardNumber';
-import { CardNumberStateKey, CardNumberStateType } from '../types/cardNumber';
+import { detectCardCompany, formatCardNumber } from '../CardCompany/checkCompany';
+import { validateCardNumber } from './validateCardNumber';
 
 /**
  * 카드 번호 입력 상태를 관리하고 유효성 검사를 수행하는 커스텀 훅입니다.
@@ -17,15 +16,20 @@ import { CardNumberStateKey, CardNumberStateType } from '../types/cardNumber';
  */
 
 function useCardNumber() {
-  const [cardNumber, setCardNumber] = useState<CardNumberStateType>(initialCardNumberState);
+  const [rawValue, setRawValue] = useState('');
+  const company = detectCardCompany(rawValue);
+  const formatted = formatCardNumber(rawValue, company);
+  const validationResult = validateCardNumber(rawValue, company);
 
-  const handleCardNumberChange = (value: string, field: CardNumberStateKey) => {
-    setCardNumber((prev) => ({ ...prev, [field]: value }));
+  const handleCardNumberChange = (input: string) => {
+    const clean = input.replace(/\D/g, '');
+    setRawValue(clean);
   };
 
   return {
-    cardNumber,
-    errorState: validateCardNumber(cardNumber),
+    cardNumber: formatted,
+    company,
+    errorState: validationResult,
     handleCardNumberChange
   };
 }
