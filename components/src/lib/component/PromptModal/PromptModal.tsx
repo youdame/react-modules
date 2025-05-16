@@ -30,6 +30,7 @@ export default function PromptModal({ isOpen, onClose, title, placeholder = '', 
             variant="primary"
             onClick={() => {
               onConfirm?.(value);
+              setValue('');
               onClose();
             }}
           >
