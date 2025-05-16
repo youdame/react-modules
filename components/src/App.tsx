@@ -11,7 +11,7 @@ function App() {
   return (
     <div style={{ padding: '40px', display: 'flex', gap: '16px' }}>
       <button onClick={() => setAlertOpen(true)}>모달 1 열기</button>
-      <AlertModal size="large" isOpen={isAlertOpen} onClose={() => setAlertOpen(false)} message="아이디는 필수로 입력해야 합니다." />
+      <AlertModal size="large" isOpen={isAlertOpen} onClose={() => setAlertOpen(false)} content={<p>아이디는 필수로 입력해야 합니다.</p>} />
 
       <button onClick={() => setConfirmOpen(true)}>모달 2 열기</button>
       <ConfirmModal
@@ -19,7 +19,7 @@ function App() {
         isOpen={isConfirmOpen}
         onClose={() => setConfirmOpen(false)}
         title="카드를 삭제하시겠습니까?"
-        message="삭제하면 복구하실 수 없습니다."
+        content={<p>삭제하면 복구하실 수 없습니다.</p>}
         onConfirm={() => alert('확인!')}
       />
 

@@ -32,8 +32,11 @@ export default function PromptModal({
         <ModalTitle>{title}</ModalTitle>
         <ModalInput autoFocus placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
         <Modal.Footer>
-          <Button onClick={onClose}>{cancelText}</Button>
+          <Button variant="secondary" onClick={onClose}>
+            {cancelText}
+          </Button>
           <Button
+            variant="primary"
             onClick={() => {
               onConfirm?.(value);
               onClose();

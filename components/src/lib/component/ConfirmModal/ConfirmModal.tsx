@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import Modal from '../Modal';
 import { CustomBackDrop, ModalTitle } from '../Modal.styles';
 import { ModalSizeType } from '../../type/Modal.types';
@@ -8,7 +9,7 @@ interface ConfirmModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
-  message: string;
+  content: ReactNode;
   cancelText?: string;
   confirmText?: string;
   onConfirm: () => void;
@@ -19,7 +20,7 @@ export default function ConfirmModal({
   isOpen,
   onClose,
   title,
-  message,
+  content,
   cancelText = '취소',
   confirmText = '확인',
   onConfirm
@@ -28,8 +29,8 @@ export default function ConfirmModal({
     <Modal isOpen={isOpen} onClose={onClose} position="center" size={size}>
       <CustomBackDrop />
       <Modal.Content style={{ backgroundColor: 'white', padding: '24px 32px', borderRadius: '8px', gap: '12px' }}>
-        <ModalTitle>{title}</ModalTitle>
-        <p>{message}</p>
+        {title && <ModalTitle>{title}</ModalTitle>}
+        {content}
         <Modal.Footer>
           <Button variant="secondary" autoFocus onClick={onClose}>
             {cancelText}

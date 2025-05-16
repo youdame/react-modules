@@ -1,28 +1,29 @@
+import { ReactNode } from 'react';
 import Modal from '../Modal';
 import { CustomBackDrop, ModalTitle } from '../Modal.styles';
-import CTAButton from '../CTAButton.tsx/CTAButton';
 import { ModalSizeType } from '../../type/Modal.types';
+import Button from '../Button/Button';
 
 interface AlertModalProps {
   size?: ModalSizeType;
   isOpen: boolean;
   onClose: () => void;
   title?: string;
-  message: string;
+  content: ReactNode;
   confirmText?: string;
 }
 
-export default function AlertModal({ size = 'medium', isOpen, onClose, title = '알림', message, confirmText = '확인' }: AlertModalProps) {
+export default function AlertModal({ size = 'medium', isOpen, onClose, title, content, confirmText = '확인' }: AlertModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} position="center" size={size}>
       <CustomBackDrop />
       <Modal.Content style={{ backgroundColor: 'white', padding: '24px 32px', borderRadius: '8px', gap: '12px' }}>
         {title && <ModalTitle>{title}</ModalTitle>}
-        <p>{message}</p>
+        {content}
         <Modal.Footer>
-          <CTAButton autoFocus onClick={onClose}>
+          <Button variant="primary" autoFocus onClick={onClose}>
             {confirmText}
-          </CTAButton>
+          </Button>
         </Modal.Footer>
       </Modal.Content>
     </Modal>
