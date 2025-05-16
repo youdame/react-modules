@@ -1,9 +1,9 @@
 import { createContext, useContext } from 'react';
-import { ModalSizeType } from './type/Modal.types';
+import { ModalPosition, ModalSizeType } from './type/Modal.types';
 
 type ModalContextType = {
   onClose: () => void;
-  position: 'bottom' | 'center';
+  position: ModalPosition;
   size: ModalSizeType;
 };
 
