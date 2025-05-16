@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Modal from '../Modal';
-import { CustomBackDrop, ModalTitle } from '../Modal.styles';
 import ModalInput from '../Input/input';
 import Button from '../Button/Button';
 
@@ -19,9 +18,9 @@ export default function PromptModal({ isOpen, onClose, title, placeholder = '', 
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} position="center" size="small">
-      <CustomBackDrop />
+      <Modal.BackDrop style={{ backgroundColor: 'rgba(0, 0, 0, 0.35)' }} />
       <Modal.Content style={{ backgroundColor: 'white', padding: '24px 32px', borderRadius: '8px', gap: '12px' }}>
-        {Boolean(title) && <ModalTitle>{title}</ModalTitle>}
+        {Boolean(title) && <Modal.Title style={{ fontSize: '18px', fontWeight: '700', color: '#000' }}>{title}</Modal.Title>}
         <ModalInput autoFocus placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
         <Modal.Footer>
           <Button variant="secondary" onClick={onClose}>
