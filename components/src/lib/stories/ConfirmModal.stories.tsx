@@ -15,7 +15,7 @@ const ConfirmModalExample = () => {
   return (
     <>
       <button onClick={() => setOpen(true)}>확인 모달 열기</button>
-      <ConfirmModal isOpen={open} onClose={() => setOpen(false)} title="삭제 확인" message="정말 삭제하시겠습니까?" onConfirm={() => alert('확인됨')} />
+      <ConfirmModal isOpen={open} onClose={() => setOpen(false)} title="삭제 확인" content={<p>정말 삭제하시겠습니까?</p>} onConfirm={() => alert('확인됨')} />
     </>
   );
 };
