@@ -18,7 +18,7 @@ export default function AlertModal({ size = 'medium', isOpen, onClose, title, co
     <Modal isOpen={isOpen} onClose={onClose} position="center" size={size}>
       <CustomBackDrop />
       <Modal.Content style={{ backgroundColor: 'white', padding: '24px 32px', borderRadius: '8px', gap: '12px' }}>
-        {title && <ModalTitle>{title}</ModalTitle>}
+        {Boolean(title) && <ModalTitle>{title}</ModalTitle>}
         {content}
         <Modal.Footer>
           <Button variant="primary" autoFocus onClick={onClose}>
