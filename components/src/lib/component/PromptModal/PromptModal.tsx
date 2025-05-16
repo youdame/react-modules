@@ -2,8 +2,7 @@ import { useState } from 'react';
 import Modal from '../Modal';
 import { CustomBackDrop, ModalTitle } from '../Modal.styles';
 import ModalInput from '../Input/input';
-import ActionButton from '../ActionButton/ActionButton';
-import CTAButton from '../CTAButton.tsx/CTAButton';
+import Button from '../Button/Button';
 
 interface PromptModalProps {
   isOpen: boolean;
@@ -33,15 +32,15 @@ export default function PromptModal({
         <ModalTitle>{title}</ModalTitle>
         <ModalInput autoFocus placeholder={placeholder} value={value} onChange={(e) => setValue(e.target.value)} />
         <Modal.Footer>
-          <ActionButton onClick={onClose}>{cancelText}</ActionButton>
-          <CTAButton
+          <Button onClick={onClose}>{cancelText}</Button>
+          <Button
             onClick={() => {
               onConfirm?.(value);
               onClose();
             }}
           >
             {confirmText}
-          </CTAButton>
+          </Button>
         </Modal.Footer>
       </Modal.Content>
     </Modal>

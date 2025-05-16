@@ -1,8 +1,7 @@
-import ActionButton from '../ActionButton/ActionButton';
-import CTAButton from '../CTAButton.tsx/CTAButton';
 import Modal from '../Modal';
 import { CustomBackDrop, ModalTitle } from '../Modal.styles';
 import { ModalSizeType } from '../../type/Modal.types';
+import Button from '../Button/Button';
 
 interface ConfirmModalProps {
   size?: ModalSizeType;
@@ -32,17 +31,18 @@ export default function ConfirmModal({
         <ModalTitle>{title}</ModalTitle>
         <p>{message}</p>
         <Modal.Footer>
-          <ActionButton autoFocus onClick={onClose}>
+          <Button variant="secondary" autoFocus onClick={onClose}>
             {cancelText}
-          </ActionButton>
-          <CTAButton
+          </Button>
+          <Button
+            variant="primary"
             onClick={() => {
               onConfirm();
               onClose();
             }}
           >
             {confirmText}
-          </CTAButton>
+          </Button>
         </Modal.Footer>
       </Modal.Content>
     </Modal>
