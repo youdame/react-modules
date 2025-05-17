@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { userEvent, screen } from '@storybook/testing-library';
 import AlertModal from '../component/AlertModal/AlertModal';
-import '@testing-library/jest-dom';
+import { expect } from '@storybook/jest';
 
 const meta: Meta<typeof AlertModal> = {
   title: 'Components/Modal/AlertModal',
