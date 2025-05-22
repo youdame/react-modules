@@ -1,10 +1,11 @@
+/** @jsxImportSource @emotion/react */
 import useScrollBlock from '../hooks/useScrollBlock';
 import { ModalContext, useModalContext } from '../ModalContext';
-import { BackDrop, ModalWrapper, StyledFooter } from './Modal.styles';
 import { useClickAway } from '../hooks/useClickAway';
-import { ModalBackDropProps, ModalCloseButtonProps, ModalContentProps, ModalFooterProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
+import { ModalBackDropProps, ModalContentProps, ModalFooterProps, ModalMainProps, ModalTitleProps } from '../type/Modal.types';
 import useEscKeydown from '../hooks/useEscKeydown';
 import ModalPortal from '../ModalPortal';
+import { backdropStyle, modalFooterStyle, modalTitleStyle, modalWrapperStyle } from './Modal.styles';
 
 function ModalMain({ isOpen, size, onClose, position, children }: ModalMainProps) {
   useEscKeydown(onClose);
@@ -19,38 +20,32 @@ function ModalMain({ isOpen, size, onClose, position, children }: ModalMainProps
 }
 
 function ModalBackDrop({ ...props }: ModalBackDropProps) {
-  return <BackDrop {...props} />;
+  return <div css={backdropStyle} {...props} />;
 }
 
 function ModalContent({ children, ...props }: ModalContentProps) {
   const { onClose, position, size } = useModalContext();
   const outsideRef = useClickAway<HTMLDivElement>(onClose);
-
   return (
-    <ModalWrapper size={size} position={position} ref={outsideRef} {...props}>
+    <div ref={outsideRef} css={modalWrapperStyle(position, size)} {...props}>
       {children}
-    </ModalWrapper>
+    </div>
   );
 }
 
 function ModalTitle({ children, ...props }: ModalTitleProps) {
-  return <p {...props}>{children}</p>;
-}
-
-function ModalCloseButton({ children, ...props }: ModalCloseButtonProps) {
-  const { onClose } = useModalContext();
   return (
-    <button onClick={onClose} {...props}>
+    <h2 css={modalTitleStyle} {...props}>
       {children}
-    </button>
+    </h2>
   );
 }
 
 function ModalFooter({ align = 'right', children, ...props }: ModalFooterProps) {
   return (
-    <StyledFooter align={align} {...props}>
+    <div css={modalFooterStyle(align)} {...props}>
       {children}
-    </StyledFooter>
+    </div>
   );
 }
 
@@ -58,7 +53,7 @@ const Modal = Object.assign(ModalMain, {
   BackDrop: ModalBackDrop,
   Content: ModalContent,
   Title: ModalTitle,
-  CloseButton: ModalCloseButton,
+
   Footer: ModalFooter
 });
 

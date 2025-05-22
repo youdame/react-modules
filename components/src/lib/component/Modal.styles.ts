@@ -1,7 +1,8 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { ModalFooterProps, ModalPosition, ModalSizeType } from '../type/Modal.types';
 import { justifyMap } from '../constants';
-export const BackDrop = styled.div`
+
+export const backdropStyle = css`
   position: fixed;
   left: 0;
   top: 0;
@@ -9,36 +10,30 @@ export const BackDrop = styled.div`
   height: 100vh;
 `;
 
-export const ModalWrapper = styled.div<{
-  position?: ModalPosition;
-  size?: ModalSizeType;
-}>`
+export const modalWrapperStyle = (position?: ModalPosition, size?: ModalSizeType) => css`
   display: flex;
   flex-direction: column;
   gap: 18px;
   position: fixed;
-  top: ${({ position }) => (position === 'bottom' ? 'auto' : '50%')};
-  bottom: ${({ position }) => (position === 'bottom' ? '5%' : 'auto')};
+  top: ${position === 'bottom' ? 'auto' : '50%'};
+  bottom: ${position === 'bottom' ? '5%' : 'auto'};
   left: 50%;
   padding: 24px 32px;
   border-radius: 8px;
   background-color: white;
-  transform: ${({ position }) => (position === 'bottom' ? 'translateX(-50%)' : 'translate(-50%, -50%)')};
+  transform: ${position === 'bottom' ? 'translateX(-50%)' : 'translate(-50%, -50%)'};
   z-index: 1;
-  width: ${({ size }) => (size === 'small' ? '320px' : size === 'large' ? '600px' : '480px')};
+  width: ${size === 'small' ? '320px' : size === 'large' ? '600px' : '480px'};
 `;
 
-export const ModalTitle = styled.h2`
+export const modalTitleStyle = css`
   font-size: 18px;
   font-weight: 700;
   color: #000;
 `;
 
-export const CustomBackDrop = styled(BackDrop)`
-  background-color: rgba(0, 0, 0, 0.35);
-`;
-export const StyledFooter = styled.div<{ align?: ModalFooterProps['align'] }>`
+export const modalFooterStyle = (align: ModalFooterProps['align'] = 'right') => css`
   display: flex;
-  justify-content: ${({ align = 'right' }) => justifyMap[align]};
+  justify-content: ${justifyMap[align]};
   gap: 12px;
 `;
